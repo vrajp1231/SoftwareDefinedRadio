@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vraj Patel Lab 8</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f9fafb;
+      --card-bg: #ffffff;
+      --primary: #4f46e5;
+      --text: #1f2937;
+      --secondary: #4b5563;
+      --radius: 12px;
+      --shadow: 0 4px 6px rgba(0,0,0,0.05);
+      --gap: 24px;
+      --toggle-active: #4338ca;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: var(--gap);
+    }
+    header {
+      text-align: center;
+      margin-bottom: var(--gap);
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 500;
+      color: var(--primary);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--gap);
+    }
+    .card {
+      background-color: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .card-header {
+      background-color: rgba(79,70,229,0.1);
+      padding: 16px;
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--primary);
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .card-body {
+      flex: 1;
+      padding: 16px;
+    }
+    .form-group {
+      margin-bottom: 16px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--secondary);
+    }
+    /* Base Inputs */
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid #d1d5db;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    /* Remove number input arrows */
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+    input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(79,70,229,0.2);
+    }
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .checkbox-group input {
+      margin-right: 8px;
+      width: 16px;
+      height: 16px;
+    }
+    .actions {
+      margin-top: auto;
+      display: flex;
+      gap: 12px;
+    }
+    button,
+    input[type="submit"] {
+      background-color: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      padding: 12px 20px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s, box-shadow 0.2s;
+      flex: 1;
+    }
+    button:hover,
+    input[type="submit"]:hover {
+      background-color: var(--toggle-active);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .toggle-button.active {
+      background-color: var(--toggle-active);
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .input-help {
+      font-size: 0.875rem;
+      color: var(--secondary);
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SDR Control Panel</h1>
+  </header>
+  <div class="grid">
+  
+    <!-- Initialize SDR -->
+    <div class="card">
+      <div class="card-header">Initialize SDR</div>
+      <div class="card-body">
+        <form action="./cgi-bin/setup_all.sh" method="post">
+          <div class="form-group">
+            <label for="init-ip">Destination IP</label>
+			<div class="input-help">IP where you want to send UDP packets to</div>
+            <input type="text" id="init-ip" name="ip" placeholder="192.168.50.205" required>
+          </div>
+          <div class="form-group">
+            <label for="init-port">Destination Port</label>
+			<div class="input-help">Port where you want to send UDP packets to</div>
+            <input type="number" id="init-port" name="port" placeholder="25344" required>
+          </div>
+          <div class="actions">
+            <input type="submit" value="Initialize SDR">
+          </div>
+		  <div class="input-help">Program FPGA with bitfile, configure codec, enable UDP streamer program</div>
+        </form>
+      </div>
+    </div>
+	
+    <!-- Radio Tuning -->
+    <div class="card">
+      <div class="card-header">Radio Tuning</div>
+      <div class="card-body">
+        <form action="/cgi-bin/configure_radio.cgi" method="post">
+          <div class="form-group">
+            <label for="adc-freq">Fake ADC Frequency (Hz)</label>
+            <input type="number" id="adc-freq" name="adc_freq_hz" placeholder="48000000" required>
+          </div>
+          <div class="form-group">
+            <label for="tune-freq">Tuner Frequency (Hz)</label>
+            <input type="number" id="tune-freq" name="tune_freq_hz" placeholder="11250000" required>
+          </div>
+          <div class="checkbox-group">
+            <input type="checkbox" id="streaming" name="streaming" value="1">
+            <label for="streaming">Enable UDP Streaming</label>
+          </div>
+          <div class="actions">
+            <input type="submit" value="Tune Radio">
+          </div>
+        </form>
+      </div>
+    </div>
+	
+    <!-- Tuner Control -->
+    <div class="card">
+      <div class="card-header">Radio Control</div>
+      <div class="card-body">
+        <form action="/cgi-bin/radio_en.cgi" method="post">
+          <div class="actions">
+            <button type="submit" name="action" value="set">Enable Radio</button>
+            <button type="submit" name="action" value="reset">Disable Radio</button>
+          </div>
+        </form>
+      </div>
+    </div>
+	
+    <!-- Send UDP Packets -->
+    <!-- <div class="card"> -->
+      <!-- <div class="card-header">Send UDP Packets (Milestone 1 Test)</div> -->
+      <!-- <div class="card-body"> -->
+        <!-- <form action="./cgi-bin/run_milestone.sh" method="post"> -->
+          <!-- <div class="form-group"> -->
+            <!-- <label for="pkt-ip">Destination IP</label> -->
+            <!-- <input type="text" id="pkt-ip" name="ip" placeholder="192.168.50.205" required> -->
+          <!-- </div> -->
+          <!-- <div class="form-group"> -->
+            <!-- <label for="pkt-port">Destination Port</label> -->
+            <!-- <input type="number" id="pkt-port" name="port" placeholder="25344" required> -->
+          <!-- </div> -->
+          <!-- <div class="form-group"> -->
+            <!-- <label for="pkt-count">Packet Count</label> -->
+            <!-- <input type="number" id="pkt-count" name="num_packets" placeholder="100" required> -->
+		  <!-- </div> -->
+		  <!-- <div class="actions"> -->
+            <!-- <input type="submit" value="Send UDP Packets"> -->
+          <!-- </div> -->
+		<!-- </form> -->
+	  <!-- </div> -->
+	<!-- </div> -->
