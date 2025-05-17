@@ -21,7 +21,7 @@
 
 ### Step 3: Load Web Server Files to FPGA
 - Using a tool such as MobaXterm, connect to the FPGA.
-- Transfer all files to the FPGA.
+- Transfer all files to the FPGA (Or simply transfer the lab8.tar.gz file to the FPGA and extract it there).
 - Ensure all CGI files are executable by using the following when in the `cgi-bin` folder:
   ```bash
   chmod +x *
@@ -30,7 +30,7 @@
 ### Step 4: Start Web Server
 - Navigate to the location of the `init_network.sh` file and use the following to start the web server:
   ```bash
-  ./init_network.sh -i <ip_address> -p <port>
+  sudo bash ./init_network.sh -i <ip_address> -p <port>
   ```
   - Default IP Address: 192.168.50.87
   - Default Port: 8080
@@ -42,3 +42,4 @@
   http://<ip_address>:<port>
   ```
 - You should be presented with an interface where you can input desired values to control the SDR, as well as configure UDP streaming.
+- NOTE: Please make sure to run the "Initialize SDR box first before the Tune Radio box"
