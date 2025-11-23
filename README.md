@@ -21,7 +21,7 @@
 
 ### Step 3: Load Web Server Files to FPGA
 - Using a tool such as MobaXterm, connect to the FPGA.
-- Transfer all files to the FPGA (Or simply transfer the lab8.tar.gz file to the FPGA and extract it there).
+- Transfer all files to the FPGA (Or simply transfer the Patel_Lab11.tgz file to the FPGA and extract it there).
 - Ensure all CGI files are executable by using the following when in the `cgi-bin` folder:
   ```bash
   chmod +x *
@@ -32,7 +32,7 @@
   ```bash
   sudo bash ./init_network.sh -i <ip_address> -p <port>
   ```
-  - Default IP Address: 192.168.50.87
+  - Default IP Address: 192.168.0.78
   - Default Port: 8080
 - A successful execution of the command will output a confirmation message that the HTTP server is running on the user-defined port.
 
