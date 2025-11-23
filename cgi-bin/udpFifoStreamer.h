@@ -30,7 +30,7 @@
 #define AXI4_STREAM_FIFO_RDFR_RESET_KEY  0x000000A5 // Reset key for receive data FIFO
 
 #define DEFAULT_UDP_DEST_PORT   25344           // Default UDP port
-#define DEFAULT_DEST_IP         "192.168.50.205"   // Default destination IP address
+#define DEFAULT_DEST_IP         "192.168.0.78"   // Default destination IP address
 
 #define NUM_SAMPLES 256 // Number of samples in the packet
 

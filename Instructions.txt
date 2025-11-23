@@ -1,7 +1,9 @@
+GITHUB PROJECT LINK: https://github.com/vrajp1231/SoftwareDefinedRadio/tree/main
+
 1. (Optional) Assign a static IP address to the FPGA
-2. Transfer lab8.tar.gz to the FPGA using MobaXterm or other similar methods.
-3. Extract the file using 'tar -xvf lab8.tar.gz'
-4. Navigate to lab8/cgi-bin and execute 'chmod +x *' to ensure all scripts are executable.
+2. Transfer Patel_Lab11.tgz to the FPGA using MobaXterm or other similar methods.
+3. Extract the file using 'tar -xvf Patel_Lab11.tgz'
+4. Navigate to Patel_Lab11/cgi-bin and execute 'chmod +x *' to ensure all scripts are executable.
 5. Start HTTP server using sudo bash ./init_network.sh -i <IP_ADDRESS> -p <PORT>
 6. Navigate to the IP address and port set in Step 5 using a browser.
 7. Set Destination IP and Destination Port, then hit the Initialize SDR button. NOTE: RUN THIS STEP PRIOR TO TUNING THE RADIO

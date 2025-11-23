@@ -2,7 +2,7 @@
 
 # default values
 STREAMING_APPLICATION=udpFifoStreamer2
-ip=192.168.50.205
+ip=192.168.0.78
 port=25344
 
 read -n "$CONTENT_LENGTH" POST_DATA

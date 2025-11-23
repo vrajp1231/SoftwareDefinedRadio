@@ -8,7 +8,7 @@
 INTERFACE="eth0"
 
 # Default settings
-IP_ADDRESS="192.168.50.87"
+IP_ADDRESS="192.168.0.232"
 SUBNET_MASK="255.255.255.0"
 HTTP_PORT="8080"
 
@@ -17,14 +17,14 @@ while getopts "i:p:" opt; do
     case $opt in
         i) IP_ADDRESS="$OPTARG" ;;
         p) HTTP_PORT="$OPTARG" ;;
-        *) echo "Usage: $0 -i <IP_ADDRESS> (default = 192.168.50.87) -p <HTTP_PORT> (default = 8080)" >&2; exit 1 ;;
+        *) echo "Usage: $0 -i <IP_ADDRESS> (default = 192.168.0.232) -p <HTTP_PORT> (default = 8080)" >&2; exit 1 ;;
     esac
 done
 
 # Validate user inputs
 if [ -z "$IP_ADDRESS" ] || [ -z "$HTTP_PORT" ]; then
     echo "Error: Both IP address and HTTP port must be specified."
-    echo "Usage: $0 -i <IP_ADDRESS> (default = 192.168.50.87) -p <HTTP_PORT> (default = 8080)"
+    echo "Usage: $0 -i <IP_ADDRESS> (default = 192.168.0.232) -p <HTTP_PORT> (default = 8080)"
     exit 1
 fi
 

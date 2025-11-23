@@ -52,7 +52,6 @@ int main(void)
     return 0;
 }
 
-
 void cgi_callback(void)
 {
     printf("Content-Type: text/html\n\n");
@@ -80,7 +79,7 @@ void cgi_callback(void)
 
     data[len] = '\0';
 
-    printf("POST data: %s<br>\n", data);
+    // printf("POST data: %s<br>\n", data);
     printf("<h3>");
 
     char* token = strtok(data, "&");
@@ -104,7 +103,6 @@ void cgi_callback(void)
     printf("</body>\n");
     printf("</html>\n");
 }
-
 
 // get pointer to the radio tuner base address in user space
 volatile unsigned int * get_radio_tuner()
