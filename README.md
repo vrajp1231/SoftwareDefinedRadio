@@ -43,5 +43,7 @@
   http://<ip_address>:<port>
   ```
 - You should be presented with an interface (shwon below) where you can input desired values to control the SDR, as well as configure UDP streaming.
+
 ![alt text](https://github.com/vrajp1231/SoftwareDefinedRadio/blob/main/images/Webportal.png "Web Portal")
+
 - NOTE: Please make sure to run the "Initialize SDR box first before the Tune Radio box"
