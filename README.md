@@ -35,6 +35,7 @@
   - Default IP Address: 192.168.0.78
   - Default Port: 8080
 - A successful execution of the command will output a confirmation message that the HTTP server is running on the user-defined port.
+- NOTE: Initiating `init_network.sh` using an ip address and port that is different than what you set in Step 2 will cause the device to disconnect from MobaXterm.
 
 ### Step 5: Using the Web Interface
 - Using a web browser, navigate to the IP address and port used when starting the web server
